@@ -1,0 +1,50 @@
+{% extends "movie_app/base.html" %}
+
+{% load static %}
+
+{% block salir %}
+{% if request.user.is_authenticated %}
+<li class="pure-menu-item"><a  href= "{% url 'logout' %}" class="pure-menu-link">Salir</a></li>
+{% endif %}
+{% endblock %}
+{% if request.user.is_authenticated %}
+{% block portal %}<li  class="pure-menu-item "><a style="color: #c50000"  href= "{% url 'editar_usuario' %}" class="pure-menu-link">{{user.username}}</a></li>{% endblock %}
+{% endif %}
+{% block botones_inicio %}
+<div class="botones_inicio" hidden>
+    <a href= "{% url 'login' %}"  class="pure-button pure-button-primary">  Ingresar  </a>
+    <a href= "{% url 'registro' %}"  class="pure-button pure-button-primary">Registrate</a>
+</div>
+<p style="color: green">{{mensaje}}</p> 
+{% endblock %}
+
+
+{% block contenidoQueCambia %}
+
+<div class="content-head is-center">
+   
+</div>  
+<div class="content-head is-center">
+    <h2>Bienvenid@ {{user.first_name}}</h2> 
+</div>   
+    <h2 class="content-head is-center">Empezá a cargar tus peliculas y series favoritas.</h2>
+
+
+    {
+     
+    <div class="portal">
+        
+    <a class="items_portal"  href="{% url 'peliculas' %}">  Agregar Pelicula </a>
+    
+    
+      
+    </div>  
+    
+    <div class="portal">
+        
+        <a class="items_portal"  href="{% url 'listar_pelicula' %}">  Mostrar Peliculas Cargadas </a>
+                      
+   </div> 
+        
+ 
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "movie_app/base.html" %}
+
+{% load static %}
+
+{% block salir %}
+{% if request.user.is_authenticated %}
+<li class="pure-menu-item"><a  href= "{% url 'logout' %}" class="pure-menu-link">Salir</a></li>
+{% endif %}
+{% endblock %}
+{% if request.user.is_authenticated %}
+{% block portal %}<li class="pure-menu-item"><a  style="color: #c50000" href= "{% url 'editar_usuario' %}" class="pure-menu-link">{{user.username}}</a></li>{% endblock %}
+{% endif %}
+
+{% block botones_inicio %}
+<div class="botones_inicio">
+    <a href= "{% url 'portal' %}"  class="pure-button pure-button-primary">  Volver  </a>
+    
+</div>
+
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+
+    <h2 class="content-head is-center" >
+
+
+        <form class="container " method="post">{% csrf_token %}
+            ¿Estás seguro que querés borrar la pelicula = <span style="color: #c50000" >"{{ object  }}"</span>
+
+           <div class="justify-content-center"></div> 
+            <input class="btn btn-primary" type="submit" value="Borrar" />
+           <a href="{% url 'listar_pelicula' %}"> <input class="btn btn-primary" type="button" value="No borrar" /></a>
+        </form>
+    
+
+    </h2>
+    
+
+ 
+
+   
+{% endblock %}

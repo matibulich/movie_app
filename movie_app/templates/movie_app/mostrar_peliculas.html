@@ -1,0 +1,64 @@
+{% extends "movie_app/base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% block salir %}
+{% if request.user.is_authenticated %}
+<li class="pure-menu-item"><a  href= "{% url 'logout' %}" class="pure-menu-link">Salir</a></li>
+{% endif %}
+{% endblock %}
+{% if request.user.is_authenticated %}
+{% block portal %}<li class="pure-menu-item"><a style="color: #c50000" href= "{% url 'editar_usuario' %}" class="pure-menu-link">{{user.username}}</a></li>{% endblock %}
+{% endif %}
+
+{% block botones_inicio %}
+<div class="botones_inicio">
+    <a href= "{% url 'portal' %}"  class="pure-button pure-button-primary">  Volver  </a>
+    
+</div>
+
+{% endblock %}
+<p style="color:red">{{mensaje}}</p>
+{% block contenidoQueCambia %}
+
+
+    <h2 class="content-head is-center" >Peliculas Cargadas. </h2>
+<div class="container d-flex flex-row align-items-center flex-wrap justify-content-center">
+    
+     
+
+  
+   
+         <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Pelicula</th>
+                <th scope="col">Usuario</th>
+              </tr>
+            </thead>
+            {% for pelicula in object_list %}
+            <tbody class="table-group-divider">
+              <tr>
+    
+                <td><a class="pelicula_item_pelicula"href="{% url 'Detail' pelicula.id %}">{{ pelicula.nombre.upper }}</a>  <a class="pelicula_item_boton" href="{% url 'editar_pelicula' pelicula.nombre %}">Editar</a> <a class="pelicula_item_boton" href="{% url 'borrar_pelicula' pelicula.id %}">Borrar</a> </td>
+                <td><p class="pelicula_item_usuario">{{ pelicula.usuario }}</p> </td>
+                
+              </tr>
+              
+            </tbody>
+            
+            {% endfor %}
+   
+          </table>
+
+
+
+
+
+
+
+    
+   
+</div>
+   
+{% endblock %}

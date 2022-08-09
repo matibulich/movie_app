@@ -1,0 +1,55 @@
+{% extends "movie_app/base.html" %}
+
+{% load static %}
+
+{% block salir %}
+{% if request.user.is_authenticated %}
+<li class="pure-menu-item"><a  href= "{% url 'logout' %}" class="pure-menu-link">Salir</a></li>
+{% endif %}
+{% endblock %}
+{% if request.user.is_authenticated %}
+{% block portal %}<li class="pure-menu-item"><a  style="color: #c50000" href= "{% url 'editar_usuario' %}" class="pure-menu-link">{{user.username}}</a></li>{% endblock %}
+{% endif %}
+
+{% block botones_inicio %}
+<div class="botones_inicio">
+    <a href= "{% url 'portal' %}"  class="pure-button pure-button-primary">  Volver  </a>
+    
+</div>
+
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+
+    <h2 class="content-head is-center" >"{{object}}"</h2>
+    
+ <div class="container d-flex  flex-column align-content-stretch align-items-center mb-3 ">
+    <div class="detalles_pelicula_row">
+
+
+        <div class="card border-primary border border-2" style="width: 18rem;">
+   
+            <a href="{{ pelicula.portada.url }}">  <img src="{{ pelicula.portada.url }}" class="card-img-top" alt="..."> </a>
+            <div class="card-body">
+              <p class="card-text">
+                <div class="detalles_pelicula ">Genero: {{ pelicula.genero }}</div>
+                <div class="detalles_pelicula">Puntaje: {{ pelicula.puntuacion }}</div>
+                <div class="detalles_pelicula">Plataforma: {{ pelicula.plataforma }}</div>
+                <div class="detalles_pelicula">Comentarios: {{ pelicula.comentarios }}</div></p>
+            </div>
+          
+          </div>
+      
+    
+    </div>
+   
+           <a class="btn btn-primary mt-1"href="{% url 'listar_pelicula' %}">Volver</a>
+    </p>
+</div>
+
+   
+
+
+
+{% endblock %}

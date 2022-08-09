@@ -1,0 +1,45 @@
+{% extends "movie_app/base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block salir %}
+{% if request.user.is_authenticated %}
+<li class="pure-menu-item"><a  href= "{% url 'logout' %}" class="pure-menu-link">Salir</a></li>
+{% endif %}
+{% endblock %}
+{% if request.user.is_authenticated %}
+{% block portal %}<li class="pure-menu-item"><a  style="color: #c50000" href= "{% url 'editar_usuario' %}" class="pure-menu-link">{{user.username}}</a></li>{% endblock %}
+{% endif %}
+
+{% block botones_inicio %}
+<div class="botones_inicio">
+    <a href= "{% url 'portal' %}"  class="pure-button pure-button-primary">  Volver  </a>
+    
+</div>
+
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+
+    <h2 class="content-head is-center" >Editar</h2>
+
+        <form class="container pb-3" action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+                      
+         
+
+                {{ miFormulario | crispy }}
+    
+ 
+             
+    <br>
+            <input class="btn btn-primary" type="submit", value="Modificar">
+    
+        </form>
+   
+
+
+   
+{% endblock %}

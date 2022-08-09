@@ -1,0 +1,25 @@
+{% extends "movie_app/base.html" %}
+
+{% load static %}
+
+{% block botones_inicio %}
+<div class="botones_inicio">
+    <a href= "{% url 'login' %}"  class="pure-button pure-button-primary">  Ingresar  </a>
+    <a href= "{% url 'registro' %}"  class="pure-button pure-button-primary">Registrate</a>
+</div>
+
+<p style="color:red">{{mensaje}}<p>
+{% endblock %}
+{% block javascript %}
+{% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+               
+                "text": "{{m}}",
+                
+               })
+            </script>
+    {% endfor %}
+{% endif %}
+{% endblock %}

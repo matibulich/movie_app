@@ -1,0 +1,21 @@
+{% extends "movie_app/base.html" %}
+
+{% load static %}
+
+
+{% block botones_inicio %}
+<div class="botones_inicio">
+    <a href= "{% url 'inicio' %}"  class="pure-button pure-button-primary">  Volver a inicio  </a>
+    
+</div>
+
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+
+    <h2 class="content-head is-center" >Se ha deslogueado con exito.</h2>
+
+    
+    
+{% endblock %}
